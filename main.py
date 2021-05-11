@@ -2,6 +2,10 @@ from PIL import Image
 from PIL import UnidentifiedImageError
 
 
+def get_file_for_watermarking():
+    pass
+
+
 def is_the_file_an_image():
     """Return True if the file exists & is an image.
 
@@ -21,6 +25,26 @@ def is_the_file_an_image():
     except AttributeError:
         print("Select the file.")
         return None
+
+
+def get_watermark_text():
+    pass
+
+
+def get_watermark_size():
+    pass
+
+
+def get_watermark_font():
+    pass
+
+
+def add_watermark_on_image():
+    pass
+
+
+def save_image_to_file():
+    pass
 
 
 file = '1.jpg'
