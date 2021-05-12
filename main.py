@@ -3,6 +3,7 @@ from PIL import UnidentifiedImageError
 
 
 def get_file_for_watermarking():
+    """Get file for watermarking from user input."""
     pass
 
 
@@ -28,22 +29,27 @@ def is_the_file_an_image():
 
 
 def get_watermark_text():
+    """Get text for watermark from user input."""
     pass
 
 
 def get_watermark_size():
+    """Get size of watermark from user input."""
     pass
 
 
 def get_watermark_font():
+    """Get font of watermark from user input."""
     pass
 
 
 def add_watermark_on_image():
+    """Add watermark on top of the image."""
     pass
 
 
 def save_image_to_file():
+    """Save edited image as a new file on disk."""
     pass
 
 
