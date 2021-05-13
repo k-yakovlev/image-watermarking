@@ -43,6 +43,11 @@ def get_watermark_font():
     pass
 
 
+def get_watermark_opacity():
+    """Get opacity of watermark from user input"""
+    pass
+
+
 def add_watermark_on_image():
     """Add watermark on top of the image."""
     pass
