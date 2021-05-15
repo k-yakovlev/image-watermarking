@@ -59,9 +59,10 @@ def get_step_of_watermarks_by_y():
     watermark_step_y = input('Enter step by y-axis for watermarks: ')
 
 
-def get_watermark_opacity():
-    """Get opacity of watermark from user input"""
-    pass
+def get_watermark_opacity_percentage():
+    """Get percentage of opacity for watermark from user input"""
+    global watermark_opacity_percentage
+    watermark_opacity_percentage = input('Enter % of opacity for watermark: ')
 
 
 def add_watermark_on_image():
@@ -80,6 +81,7 @@ watermark_font_name = None
 watermark_font_size = None
 watermark_step_x = None
 watermark_step_y = None
+watermark_opacity_percentage = None
 image = None
 
 if __name__ == '__main__':
