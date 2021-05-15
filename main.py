@@ -43,7 +43,8 @@ def get_watermark_font_name():
 
 def get_watermark_font_size():
     """Get size of watermark from user input."""
-    pass
+    global watermark_font_size
+    watermark_font_size = input('Enter the size of font for watermark: ')
 
 
 def get_watermark_opacity():
@@ -64,6 +65,7 @@ def save_image_to_file():
 file = None
 watermark_text = None
 watermark_font_name = None
+watermark_font_size = None
 image = None
 
 if __name__ == '__main__':
