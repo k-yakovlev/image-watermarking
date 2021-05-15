@@ -53,6 +53,12 @@ def get_step_of_watermarks_by_x():
     watermark_step_x = input('Enter step by x-axis for watermarks: ')
 
 
+def get_step_of_watermarks_by_y():
+    """Get step between watermarks on y-axis (vertical interval)."""
+    global watermark_step_y
+    watermark_step_y = input('Enter step by y-axis for watermarks: ')
+
+
 def get_watermark_opacity():
     """Get opacity of watermark from user input"""
     pass
@@ -73,6 +79,7 @@ watermark_text = None
 watermark_font_name = None
 watermark_font_size = None
 watermark_step_x = None
+watermark_step_y = None
 image = None
 
 if __name__ == '__main__':
