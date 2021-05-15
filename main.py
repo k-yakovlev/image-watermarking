@@ -4,7 +4,9 @@ from PIL import UnidentifiedImageError
 
 def get_file_for_watermarking():
     """Get file for watermarking from user input."""
-    pass
+    global file
+    file = input('Enter path to the file: ')
+    return file
 
 
 def is_the_file_an_image():
@@ -58,7 +60,7 @@ def save_image_to_file():
     pass
 
 
-file = '1.jpg'
+file = None
 image = None
 
 if __name__ == '__main__':
