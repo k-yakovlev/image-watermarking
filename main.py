@@ -47,6 +47,12 @@ def get_watermark_font_size():
     watermark_font_size = input('Enter the size of font for watermark: ')
 
 
+def get_step_of_watermarks_by_x():
+    """Get step between watermarks on x-axis (horizontal interval)."""
+    global watermark_step_x
+    watermark_step_x = input('Enter step by x-axis for watermarks: ')
+
+
 def get_watermark_opacity():
     """Get opacity of watermark from user input"""
     pass
@@ -66,6 +72,7 @@ file = None
 watermark_text = None
 watermark_font_name = None
 watermark_font_size = None
+watermark_step_x = None
 image = None
 
 if __name__ == '__main__':
