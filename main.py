@@ -35,15 +35,15 @@ def get_watermark_text():
     watermark_text = input('Enter text for watermark: ')
 
 
-def get_watermark_size():
-    """Get size of watermark from user input."""
-    pass
-
-
 def get_watermark_font_name():
     """Get name of font for watermark from user input."""
     global watermark_font_name
     watermark_font_name = input('Enter the name of font for watermark: ')
+
+
+def get_watermark_font_size():
+    """Get size of watermark from user input."""
+    pass
 
 
 def get_watermark_opacity():
