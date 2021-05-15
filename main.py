@@ -32,7 +32,8 @@ def is_the_file_an_image():
 
 def get_watermark_text():
     """Get text for watermark from user input."""
-    pass
+    global watermark_text
+    watermark_text = input('Enter text for watermark: ')
 
 
 def get_watermark_size():
@@ -61,6 +62,7 @@ def save_image_to_file():
 
 
 file = None
+watermark_text = None
 image = None
 
 if __name__ == '__main__':
