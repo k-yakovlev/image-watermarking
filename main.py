@@ -2,8 +2,8 @@ from PIL import Image
 from PIL import UnidentifiedImageError
 
 
-def get_file_for_watermarking():
-    """Get file for watermarking from user input."""
+def get_path_to_file_for_watermarking():
+    """Get path to the file for watermarking from user input."""
     global file
     file = input('Enter path to the file: ')
     return file
