@@ -65,6 +65,12 @@ def get_watermark_opacity_percentage():
     watermark_opacity_percentage = input('Enter % of opacity for watermark: ')
 
 
+def get_watermark_rotation_angle():
+    """Get rotation angle for watermark."""
+    global watermark_rotation_angle
+    watermark_rotation_angle = input('Enter the rotation angle of watermark: ')
+
+
 def add_watermark_on_image():
     """Add watermark on top of the image."""
     pass
@@ -82,6 +88,7 @@ watermark_font_size = None
 watermark_step_x = None
 watermark_step_y = None
 watermark_opacity_percentage = None
+watermark_rotation_angle = None
 image = None
 
 if __name__ == '__main__':
