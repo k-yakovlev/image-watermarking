@@ -31,14 +31,17 @@ class WaterMarker:
             self.image = Image.open(self.path)
             return self.image
         except UnidentifiedImageError:
-            print("It isn't an image.")
-            return None
+            print("This isn't an image file.")
         except (FileNotFoundError, OSError):
-            print("Can't find the file.")
-            return None
+            print("File not found.")
         except AttributeError:
-            print("Select the file.")
-            return None
+            print("File path not specified.")
+        except ValueError:
+            print("'mode' should be 'r'. 'fp' can't be a StringIO instance.")
+        except TypeError:
+            print('"format" value type should be one of: None, list, tuple.')
+        self.image = None
+        return self.image
 
     def get_watermark_text(self):
         """Get text for watermark from user input."""
