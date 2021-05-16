@@ -107,9 +107,9 @@ class WaterMarker:
 
     def get_watermark_rotation_angle(self):
         """Get rotation angle for watermark."""
-        user_input = input('Enter the rotation angle of watermark: ')
+        rotation_angle = input('Enter the rotation angle of watermark: ')
         try:
-            self.watermark_rotation_angle = int(user_input)
+            self.watermark_rotation_angle = int(rotation_angle)
             return self.watermark_rotation_angle
         except ValueError:
             print('Invalid input. Angle should be an integer.')
