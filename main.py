@@ -7,7 +7,7 @@ class WaterMarker:
 
     def __init__(self):
         self.path = self.get_path_to_file_for_watermarking()
-        self.image = self.is_the_file_an_image()
+        self.image = self.get_image_from_file()
         self.watermark_text = self.get_watermark_text()
         self.watermark_font_name = self.get_watermark_font_name()
         self.watermark_font_size = self.get_watermark_font_size()
@@ -21,7 +21,7 @@ class WaterMarker:
         self.path = input('Enter path to the file: ')
         return self.path
 
-    def is_the_file_an_image(self):
+    def get_image_from_file(self):
         """Return True if the file exists & is an image.
 
         If True: assign the instance of PIL.Image class to global variable "image".
