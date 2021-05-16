@@ -35,6 +35,7 @@ class WaterMarker:
             self.crop_watermark_layer()
             self.add_watermark_on_image()
             self.convert_image_to_rgb()
+            self.save_image_to_file()
         else:
             self.__init__()
 
@@ -194,8 +195,13 @@ class WaterMarker:
         self.new_image = self.new_image.convert('RGB')
 
     def save_image_to_file(self):
-        """Save edited image as a new file on disk."""
-        pass
+        """Save image with watermarks as a new file on disk."""
+        new_file_name = input('Enter file name to save new file: ')
+        try:
+            self.new_image.save(f'{new_file_name}.jpg')
+        except ValueError:
+            print('Invalid file name.')
+            return self.save_image_to_file()
 
 
 if __name__ == '__main__':
