@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image, ImageFont, ImageDraw
 from PIL import UnidentifiedImageError
 
 
@@ -10,9 +10,21 @@ class WaterMarker:
         self.path = self.get_path_to_file_for_watermarking()
         self.image = self.get_image_from_file()
         if self.image:
+            self.new_image = self.image.convert('RGBA')
+            self.dbl_max_size = max(self.image.size) * 2
+            self.quarter_side_length = int(self.dbl_max_size * .25)
+            self.watermark_layer = Image.new(mode='RGBA',
+                                             size=(self.dbl_max_size,
+                                                   self.dbl_max_size),
+                                             color=(255, 255, 255, 0))
+            self.text_instance = ImageDraw.Draw(self.watermark_layer)
             self.watermark_text = self.get_watermark_text()
             self.watermark_font_name = self.get_watermark_font_name()
             self.watermark_font_size = self.get_watermark_font_size()
+            self.watermark_font = ImageFont.truetype(
+                f'{self.watermark_font_name}.ttf',
+                self.watermark_font_size,
+            )
             self.watermark_step_x = self.get_step_of_watermarks_by_x()
             self.watermark_step_y = self.get_step_of_watermarks_by_y()
             self.next_line_offset_by_x = self.get_next_line_offset_by_x()
