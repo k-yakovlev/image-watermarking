@@ -48,9 +48,9 @@ class WaterMarker:
 
     def get_watermark_text(self):
         """Get text for watermark from user input."""
-        user_input = input('Enter text for the watermark: ')
-        if user_input:
-            self.watermark_text = user_input
+        watermark_text = input('Enter text for the watermark: ')
+        if watermark_text:
+            self.watermark_text = watermark_text
             return self.watermark_text
         else:
             print('The watermark text is not specified.')
