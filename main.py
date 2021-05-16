@@ -58,9 +58,9 @@ class WaterMarker:
 
     def get_watermark_font_name(self):
         """Get name of font for watermark from user input."""
-        user_input = input('Enter the name of font for watermark: ')
-        if user_input in self.fonts:
-            self.watermark_font_name = user_input
+        font_name = input('Enter the name of font for watermark: ')
+        if font_name in self.fonts:
+            self.watermark_font_name = font_name
             return self.watermark_font_name
         else:
             print('Unknown font name.')
