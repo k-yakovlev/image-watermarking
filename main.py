@@ -34,6 +34,7 @@ class WaterMarker:
             self.rotate_watermark_layer()
             self.crop_watermark_layer()
             self.add_watermark_on_image()
+            self.convert_image_to_rgb()
         else:
             self.__init__()
 
@@ -187,6 +188,10 @@ class WaterMarker:
     def add_watermark_on_image(self):
         """Add watermark on top of the image."""
         self.new_image = Image.alpha_composite(self.new_image, self.watermark_layer)
+
+    def convert_image_to_rgb(self):
+        """Convert image from RGBA to RGB."""
+        self.new_image = self.new_image.convert('RGB')
 
     def save_image_to_file(self):
         """Save edited image as a new file on disk."""
