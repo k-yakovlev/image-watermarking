@@ -8,13 +8,16 @@ class WaterMarker:
     def __init__(self):
         self.path = self.get_path_to_file_for_watermarking()
         self.image = self.get_image_from_file()
-        self.watermark_text = self.get_watermark_text()
-        self.watermark_font_name = self.get_watermark_font_name()
-        self.watermark_font_size = self.get_watermark_font_size()
-        self.watermark_step_x = self.get_step_of_watermarks_by_x()
-        self.watermark_step_y = self.get_step_of_watermarks_by_y()
-        self.watermark_opacity_percentage = self.get_watermark_opacity_percentage()
-        self.watermark_rotation_angle = self.get_watermark_rotation_angle()
+        if self.image:
+            self.watermark_text = self.get_watermark_text()
+            self.watermark_font_name = self.get_watermark_font_name()
+            self.watermark_font_size = self.get_watermark_font_size()
+            self.watermark_step_x = self.get_step_of_watermarks_by_x()
+            self.watermark_step_y = self.get_step_of_watermarks_by_y()
+            self.watermark_opacity_percentage = self.get_watermark_opacity_percentage()
+            self.watermark_rotation_angle = self.get_watermark_rotation_angle()
+        else:
+            self.__init__()
 
     def get_path_to_file_for_watermarking(self):
         """Get path to the file for watermarking from user input."""
