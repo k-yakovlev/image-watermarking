@@ -30,6 +30,7 @@ class WaterMarker:
             self.next_line_offset_by_x = self.get_next_line_offset_by_x()
             self.watermark_opacity_value = self.get_watermark_opacity_value()
             self.watermark_rotation_angle = self.get_watermark_rotation_angle()
+            self.draw_text_on_watermark_layer()
         else:
             self.__init__()
 
@@ -155,6 +156,17 @@ class WaterMarker:
         except ValueError:
             print('Invalid input. Angle should be an integer.')
             return self.get_watermark_rotation_angle()
+
+    def draw_text_on_watermark_layer(self):
+        """Draw multiple text instance on watermark layer."""
+        for x_coordinate in range(0, self.dbl_max_size, self.watermark_step_x):
+            for y_coordinate in range(0, self.dbl_max_size, self.watermark_step_y):
+                self.text_instance.text(xy=(x_coordinate, y_coordinate),
+                                        text=self.watermark_text,
+                                        font=self.watermark_font,
+                                        fill=(255, 255, 255, self.watermark_opacity_value))
+                self.next_line_offset_by_x *= -1
+                x_coordinate -= self.next_line_offset_by_x
 
     def add_watermark_on_image(self):
         """Add watermark on top of the image."""
