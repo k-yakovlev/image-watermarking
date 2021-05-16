@@ -31,6 +31,7 @@ class WaterMarker:
             self.watermark_opacity_value = self.get_watermark_opacity_value()
             self.watermark_rotation_angle = self.get_watermark_rotation_angle()
             self.draw_text_on_watermark_layer()
+            self.rotate_watermark_layer()
         else:
             self.__init__()
 
@@ -167,6 +168,10 @@ class WaterMarker:
                                         fill=(255, 255, 255, self.watermark_opacity_value))
                 self.next_line_offset_by_x *= -1
                 x_coordinate -= self.next_line_offset_by_x
+
+    def rotate_watermark_layer(self):
+        """Rotate watermark layer."""
+        self.watermark_layer = self.watermark_layer.rotate(self.watermark_rotation_angle)
 
     def add_watermark_on_image(self):
         """Add watermark on top of the image."""
