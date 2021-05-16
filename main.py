@@ -33,6 +33,7 @@ class WaterMarker:
             self.draw_text_on_watermark_layer()
             self.rotate_watermark_layer()
             self.crop_watermark_layer()
+            self.add_watermark_on_image()
         else:
             self.__init__()
 
@@ -185,7 +186,7 @@ class WaterMarker:
 
     def add_watermark_on_image(self):
         """Add watermark on top of the image."""
-        pass
+        self.new_image = Image.alpha_composite(self.new_image, self.watermark_layer)
 
     def save_image_to_file(self):
         """Save edited image as a new file on disk."""
