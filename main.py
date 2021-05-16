@@ -68,8 +68,13 @@ class WaterMarker:
 
     def get_watermark_font_size(self):
         """Get size of watermark from user input."""
-        self.watermark_font_size = input('Enter the size of font for watermark: ')
-        return self.watermark_font_size
+        font_size = input('Enter the size of font for watermark: ')
+        try:
+            self.watermark_font_size = int(font_size)
+            return self.watermark_font_size
+        except ValueError:
+            print('Font size should be an integer.')
+            return self.get_watermark_font_size()
 
     def get_step_of_watermarks_by_x(self):
         """Get step between watermarks on x-axis (horizontal interval)."""
