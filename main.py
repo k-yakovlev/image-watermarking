@@ -88,8 +88,13 @@ class WaterMarker:
 
     def get_step_of_watermarks_by_y(self):
         """Get step between watermarks on y-axis (vertical interval)."""
-        self.watermark_step_y = input('Enter step by y-axis for watermarks: ')
-        return self.watermark_step_y
+        step_y = input('Enter step by x-axis for watermarks: ')
+        try:
+            self.watermark_step_y = int(step_y)
+            return self.watermark_step_y
+        except ValueError:
+            print('Step by y-axis between watermarks should be an integer.')
+            return self.get_step_of_watermarks_by_y()
 
     def get_watermark_opacity_value(self):
         """Get % of opacity for watermark from user input & convert it to RGBA.
