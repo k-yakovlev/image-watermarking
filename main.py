@@ -32,6 +32,7 @@ class WaterMarker:
             self.watermark_rotation_angle = self.get_watermark_rotation_angle()
             self.draw_text_on_watermark_layer()
             self.rotate_watermark_layer()
+            self.crop_watermark_layer()
         else:
             self.__init__()
 
@@ -110,7 +111,7 @@ class WaterMarker:
         except ValueError:
             print('Step by y-axis between watermarks should be an integer.')
             return self.get_step_of_watermarks_by_y()
-    
+
     def get_next_line_offset_by_x(self):
         """Get next line offset by x-axis."""
         chess_order = input('Enable chess order (y/n): ')
@@ -172,6 +173,15 @@ class WaterMarker:
     def rotate_watermark_layer(self):
         """Rotate watermark layer."""
         self.watermark_layer = self.watermark_layer.rotate(self.watermark_rotation_angle)
+
+    def crop_watermark_layer(self):
+        """Crop watermark layer to image size."""
+        self.watermark_layer = self.watermark_layer.crop(
+            (self.quarter_side_length,
+             self.quarter_side_length,
+             self.quarter_side_length + self.image.width,
+             self.quarter_side_length + self.image.height)
+        )
 
     def add_watermark_on_image(self):
         """Add watermark on top of the image."""
