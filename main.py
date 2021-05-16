@@ -6,6 +6,7 @@ class WaterMarker:
     """Class for watermarking images"""
 
     def __init__(self):
+        self.fonts = ['Pacifico']
         self.path = self.get_path_to_file_for_watermarking()
         self.image = self.get_image_from_file()
         if self.image:
@@ -57,8 +58,13 @@ class WaterMarker:
 
     def get_watermark_font_name(self):
         """Get name of font for watermark from user input."""
-        self.watermark_font_name = input('Enter the name of font for watermark: ')
-        return self.watermark_font_name
+        user_input = input('Enter the name of font for watermark: ')
+        if user_input in self.fonts:
+            self.watermark_font_name = user_input
+            return self.watermark_font_name
+        else:
+            print('Unknown font name.')
+            return self.get_watermark_font_name()
 
     def get_watermark_font_size(self):
         """Get size of watermark from user input."""
