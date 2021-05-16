@@ -74,18 +74,25 @@ class WaterMarker:
     def get_watermark_opacity_value(self):
         """Get % of opacity for watermark from user input & convert it to RGBA.
 
-        RGBA value should be integer in range 0-255, but % is more user-friendly.
+        Each of RGBA value should be an integer in range 0-255.
+        But % is more user-friendly format for input.
+        0% opacity is absolutely transparent image. In case of watermark it
+        doesn't make sense. Because of it valid input starts from 1.
+
+        If user input is correct then opacity value in RGBA format will be
+        returned in self.watermark_opacity_value.
+        Otherwise function raise ValueError & call themself again.
         """
         user_input = input('Enter % of opacity for watermark (1-100): ')
         try:
-            watermark_opacity_percentage = int(user_input)
-            if 1 <= watermark_opacity_percentage <= 100:
-                self.watermark_opacity_value = int(watermark_opacity_percentage * 2.55)
+            opacity_percentage = int(user_input)
+            if 1 <= opacity_percentage <= 100:
+                self.watermark_opacity_value = int(opacity_percentage * 2.55)
                 return self.watermark_opacity_value
             else:
                 raise ValueError
         except ValueError:
-            print('Invalid input. Opacity should be integer from 1 to 100.')
+            print('Invalid input. Opacity should be an integer from 1 to 100.')
             return self.get_watermark_opacity_value()
 
     def get_watermark_rotation_angle(self):
