@@ -14,7 +14,7 @@ class WaterMarker:
             self.watermark_font_size = self.get_watermark_font_size()
             self.watermark_step_x = self.get_step_of_watermarks_by_x()
             self.watermark_step_y = self.get_step_of_watermarks_by_y()
-            self.watermark_opacity_percentage = self.get_watermark_opacity_percentage()
+            self.watermark_opacity_value = self.get_watermark_opacity_value()
             self.watermark_rotation_angle = self.get_watermark_rotation_angle()
         else:
             self.__init__()
@@ -71,10 +71,22 @@ class WaterMarker:
         self.watermark_step_y = input('Enter step by y-axis for watermarks: ')
         return self.watermark_step_y
 
-    def get_watermark_opacity_percentage(self):
-        """Get percentage of opacity for watermark from user input"""
-        self.watermark_opacity_percentage = input('Enter % of opacity for watermark: ')
-        return self.watermark_opacity_percentage
+    def get_watermark_opacity_value(self):
+        """Get % of opacity for watermark from user input & convert it to RGBA.
+
+        RGBA value should be integer in range 0-255, but % is more user-friendly.
+        """
+        user_input = input('Enter % of opacity for watermark (1-100): ')
+        try:
+            watermark_opacity_percentage = int(user_input)
+            if 1 <= watermark_opacity_percentage <= 100:
+                self.watermark_opacity_value = int(watermark_opacity_percentage * 2.55)
+                return self.watermark_opacity_value
+            else:
+                raise ValueError
+        except ValueError:
+            print('Invalid input. Opacity should be integer from 1 to 100.')
+            return self.get_watermark_opacity_value()
 
     def get_watermark_rotation_angle(self):
         """Get rotation angle for watermark."""
