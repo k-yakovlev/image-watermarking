@@ -15,6 +15,7 @@ class WaterMarker:
             self.watermark_font_size = self.get_watermark_font_size()
             self.watermark_step_x = self.get_step_of_watermarks_by_x()
             self.watermark_step_y = self.get_step_of_watermarks_by_y()
+            self.next_line_offset_by_x = self.get_next_line_offset_by_x()
             self.watermark_opacity_value = self.get_watermark_opacity_value()
             self.watermark_rotation_angle = self.get_watermark_rotation_angle()
         else:
@@ -95,6 +96,19 @@ class WaterMarker:
         except ValueError:
             print('Step by y-axis between watermarks should be an integer.')
             return self.get_step_of_watermarks_by_y()
+    
+    def get_next_line_offset_by_x(self):
+        """Get next line offset by x-axis."""
+        chess_order = input('Enable chess order (y/n): ')
+        if chess_order == 'y':
+            self.next_line_offset_by_x = int(self.watermark_step_x * .5)
+            return self.next_line_offset_by_x
+        elif chess_order == 'n':
+            self.next_line_offset_by_x = 0
+            return self.next_line_offset_by_x
+        else:
+            print('Invalid input. Only "y" on "n".')
+            return self.get_next_line_offset_by_x()
 
     def get_watermark_opacity_value(self):
         """Get % of opacity for watermark from user input & convert it to RGBA.
