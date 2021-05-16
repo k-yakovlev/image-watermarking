@@ -93,9 +93,9 @@ class WaterMarker:
         returned in self.watermark_opacity_value.
         Otherwise function raise ValueError & call themself again.
         """
-        user_input = input('Enter % of opacity for watermark (1-100): ')
+        watermark_opacity = input('Enter % of opacity for watermark (1-100): ')
         try:
-            opacity_percentage = int(user_input)
+            opacity_percentage = int(watermark_opacity)
             if 1 <= opacity_percentage <= 100:
                 self.watermark_opacity_value = int(opacity_percentage * 2.55)
                 return self.watermark_opacity_value
