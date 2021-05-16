@@ -25,14 +25,14 @@ class WaterMarker:
         return self.path
 
     def get_image_from_file(self):
-        """Return True if the file exists & is an image.
+        """Get PIL.Image object from self.path & return it to self.image.
 
-        If True: assign the instance of PIL.Image class to global variable "image".
-        Else: show error message & return None.
+        If image file exist --> return PIL.Image object.
+        Otherwise --> show error message, return self.image = None
         """
+        self.image = None
         try:
             self.image = Image.open(self.path)
-            return self.image
         except UnidentifiedImageError:
             print("This isn't an image file.")
         except (FileNotFoundError, OSError):
@@ -43,7 +43,6 @@ class WaterMarker:
             print("'mode' should be 'r'. 'fp' can't be a StringIO instance.")
         except TypeError:
             print('"format" value type should be one of: None, list, tuple.')
-        self.image = None
         return self.image
 
     def get_watermark_text(self):
