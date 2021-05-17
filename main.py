@@ -196,7 +196,8 @@ class WaterMarker:
 
     def add_watermark_on_image(self):
         """Add watermark on top of the image."""
-        self.new_image = Image.alpha_composite(self.new_image, self.watermark_layer)
+        self.new_image = Image.alpha_composite(self.new_image,
+                                               self.watermark_layer)
 
     def convert_image_to_rgb(self):
         """Convert image from RGBA to RGB."""
