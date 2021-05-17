@@ -181,7 +181,9 @@ class WaterMarker:
 
     def rotate_watermark_layer(self):
         """Rotate watermark layer."""
-        self.watermark_layer = self.watermark_layer.rotate(self.watermark_rotation_angle)
+        self.watermark_layer = (
+            self.watermark_layer.rotate(self.watermark_rotation_angle)
+        )
 
     def crop_watermark_layer(self):
         """Crop watermark layer to image size."""
