@@ -164,12 +164,18 @@ class WaterMarker:
 
     def draw_text_on_watermark_layer(self):
         """Draw multiple text instance on watermark layer."""
-        for x_coordinate in range(0, self.dbl_max_size, self.watermark_step_x):
-            for y_coordinate in range(0, self.dbl_max_size, self.watermark_step_y):
-                self.text_instance.text(xy=(x_coordinate, y_coordinate),
-                                        text=self.watermark_text,
-                                        font=self.watermark_font,
-                                        fill=(255, 255, 255, self.watermark_opacity_value))
+        for x_coordinate in range(0,
+                                  self.dbl_max_size,
+                                  self.watermark_step_x):
+            for y_coordinate in range(0,
+                                      self.dbl_max_size,
+                                      self.watermark_step_y):
+                self.text_instance.text(
+                    xy=(x_coordinate, y_coordinate),
+                    text=self.watermark_text,
+                    font=self.watermark_font,
+                    fill=(255, 255, 255, self.watermark_opacity_value),
+                )
                 self.next_line_offset_by_x *= -1
                 x_coordinate -= self.next_line_offset_by_x
 
