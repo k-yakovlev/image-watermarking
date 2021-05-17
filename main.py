@@ -4,9 +4,9 @@ from PIL import UnidentifiedImageError
 
 class WaterMarker:
     """Class for watermarking images"""
+    fonts = ['Pacifico']
 
     def __init__(self):
-        self.fonts = ['Pacifico']
         self.path = self.get_path_to_file_for_watermarking()
         self.image = self.get_image_from_file()
         if self.image:
