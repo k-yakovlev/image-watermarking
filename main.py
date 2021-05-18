@@ -16,6 +16,10 @@ class WaterMarker:
             self.diagonal_size = (
                     (self.image.width ** 2 + self.image.height ** 2) ** .5
             )
+            self.crop_start_point = (
+                self.center[0] - self.image.width / 2,
+                self.center[1] - self.image.height / 2,
+            )
             self.quarter_side_length = int(self.dbl_max_size * .25)
             self.watermark_layer = Image.new(mode='RGBA',
                                              size=(self.dbl_max_size,
