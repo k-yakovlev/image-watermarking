@@ -104,7 +104,7 @@ class WaterMarker:
                 return self.watermark_step_x
             raise ValueError
         except ValueError:
-            print('Step by x-axis between watermarks should be an integer > 0.')
+            print('Horizontal step of watermarks must be an integer > 0.')
             return self.get_step_of_watermarks_by_x()
 
     def get_step_of_watermarks_by_y(self):
