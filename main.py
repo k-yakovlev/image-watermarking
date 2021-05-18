@@ -90,9 +90,11 @@ class WaterMarker:
         font_size = input('Enter the size of font for watermark: ')
         try:
             self.watermark_font_size = int(font_size)
-            return self.watermark_font_size
+            if self.watermark_font_size > 0:
+                return self.watermark_font_size
+            raise ValueError
         except ValueError:
-            print('Font size should be an integer.')
+            print('Font size should be an integer > 0.')
             return self.get_watermark_font_size()
 
     def get_step_of_watermarks_by_x(self):
