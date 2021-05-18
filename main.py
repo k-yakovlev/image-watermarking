@@ -12,6 +12,7 @@ class WaterMarker:
         if self.image:
             self.new_image = self.image.convert('RGBA')
             self.dbl_max_size = max(self.image.size) * 2
+            self.center = (self.image.width / 2, self.image.height / 2)
             self.diagonal_size = (
                     (self.image.width ** 2 + self.image.height ** 2) ** .5
             )
