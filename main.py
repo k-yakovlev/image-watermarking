@@ -109,12 +109,14 @@ class WaterMarker:
 
     def get_step_of_watermarks_by_y(self):
         """Get step between watermarks on y-axis (vertical interval)."""
-        step_y = input('Enter step by x-axis for watermarks: ')
+        step_y = input('Enter step by y-axis for watermarks (integer > 0): ')
         try:
             self.watermark_step_y = int(step_y)
-            return self.watermark_step_y
+            if self.watermark_step_y > 0:
+                return self.watermark_step_y
+            raise ValueError
         except ValueError:
-            print('Step by y-axis between watermarks should be an integer.')
+            print('Vertical step of watermarks must be an integer > 0.')
             return self.get_step_of_watermarks_by_y()
 
     def get_next_line_offset_by_x(self):
