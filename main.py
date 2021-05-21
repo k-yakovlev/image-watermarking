@@ -10,22 +10,13 @@ class WaterMarker:
         self.path = self.get_path_to_file_for_watermarking()
         self.image = self.get_image_from_file()
         if self.image:
-            self.new_image = self.image.convert('RGBA')
-            self.dbl_max_size = max(self.image.size) * 2
-            self.center = (self.image.width / 2, self.image.height / 2)
-            self.diagonal_size = (
+            self.image_diagonal_size = int(
                     (self.image.width ** 2 + self.image.height ** 2) ** .5
             )
-            self.crop_start_point = (
-                self.center[0] - self.image.width / 2,
-                self.center[1] - self.image.height / 2,
-            )
-            self.quarter_side_length = int(self.dbl_max_size * .25)
             self.watermark_layer = Image.new(mode='RGBA',
-                                             size=(self.dbl_max_size,
-                                                   self.dbl_max_size),
+                                             size=(self.image_diagonal_size,
+                                                   self.image_diagonal_size),
                                              color=(255, 255, 255, 0))
-            self.text_instance = ImageDraw.Draw(self.watermark_layer)
             self.watermark_text = self.get_watermark_text()
             self.watermark_font_name = self.get_watermark_font_name()
             self.watermark_font_size = self.get_watermark_font_size()
@@ -35,12 +26,16 @@ class WaterMarker:
             )
             self.watermark_step_x = self.get_step_of_watermarks_by_x()
             self.watermark_step_y = self.get_step_of_watermarks_by_y()
-            self.next_line_offset_by_x = self.get_next_line_offset_by_x()
+            self.watermark_offset_by_x = self.get_next_line_offset_by_x()
             self.watermark_opacity_value = self.get_watermark_opacity_value()
             self.watermark_rotation_angle = self.get_watermark_rotation_angle()
+
+            self.text_instance = ImageDraw.Draw(self.watermark_layer)
             self.draw_text_on_watermark_layer()
             self.rotate_watermark_layer()
             self.crop_watermark_layer()
+
+            self.new_image = self.image.convert('RGBA')
             self.add_watermark_on_image()
             self.convert_image_to_rgb()
             self.save_image_to_file()
@@ -133,11 +128,11 @@ class WaterMarker:
         """Get next line offset by x-axis."""
         chess_order = input('Enable chess order (y/n): ')
         if chess_order == 'y':
-            self.next_line_offset_by_x = int(self.watermark_step_x * .5)
-            return self.next_line_offset_by_x
+            self.watermark_offset_by_x = int(self.watermark_step_x / 4)
+            return self.watermark_offset_by_x
         elif chess_order == 'n':
-            self.next_line_offset_by_x = 0
-            return self.next_line_offset_by_x
+            self.watermark_offset_by_x = 0
+            return self.watermark_offset_by_x
         else:
             print('Invalid input. Only "y" on "n".')
             return self.get_next_line_offset_by_x()
@@ -178,20 +173,19 @@ class WaterMarker:
 
     def draw_text_on_watermark_layer(self):
         """Draw multiple text instance on watermark layer."""
-        for x_coordinate in range(0,
-                                  self.dbl_max_size,
-                                  self.watermark_step_x):
-            for y_coordinate in range(0,
-                                      self.dbl_max_size,
-                                      self.watermark_step_y):
+        for y_coordinate in range(0,
+                                  self.watermark_layer.height,
+                                  self.watermark_step_y):
+            self.watermark_offset_by_x *= -1
+            for x_coordinate in range(0 - self.watermark_offset_by_x,
+                                      self.watermark_layer.width,
+                                      self.watermark_step_x):
                 self.text_instance.text(
                     xy=(x_coordinate, y_coordinate),
                     text=self.watermark_text,
                     font=self.watermark_font,
                     fill=(255, 255, 255, self.watermark_opacity_value),
                 )
-                self.next_line_offset_by_x *= -1
-                x_coordinate -= self.next_line_offset_by_x
 
     def rotate_watermark_layer(self):
         """Rotate watermark layer."""
@@ -202,10 +196,10 @@ class WaterMarker:
     def crop_watermark_layer(self):
         """Crop watermark layer to image size."""
         self.watermark_layer = self.watermark_layer.crop(
-            (self.quarter_side_length,
-             self.quarter_side_length,
-             self.quarter_side_length + self.image.width,
-             self.quarter_side_length + self.image.height)
+            (self.watermark_layer.width/2 - self.image.width/2,
+             self.watermark_layer.height/2 - self.image.height/2,
+             self.watermark_layer.width/2 + self.image.width/2,
+             self.watermark_layer.height/2 + self.image.height/2)
         )
 
     def add_watermark_on_image(self):
