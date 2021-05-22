@@ -35,7 +35,7 @@ class WaterMarker:
             self.rotate_watermark_layer()
             self.crop_watermark_layer()
 
-            self.new_image = self.image.convert('RGBA')
+            self.image = self.image.convert('RGBA')
             self.add_watermark_on_image()
             self.convert_image_to_rgb()
             self.save_image_to_file()
@@ -204,18 +204,18 @@ class WaterMarker:
 
     def add_watermark_on_image(self):
         """Add watermark on top of the image."""
-        self.new_image = Image.alpha_composite(self.new_image,
-                                               self.watermark_layer)
+        self.image = Image.alpha_composite(self.image,
+                                           self.watermark_layer)
 
     def convert_image_to_rgb(self):
         """Convert image from RGBA to RGB."""
-        self.new_image = self.new_image.convert('RGB')
+        self.image = self.image.convert('RGB')
 
     def save_image_to_file(self):
         """Save image with watermarks as a new file on disk."""
         new_file_name = input('Enter file name to save new file: ')
         try:
-            self.new_image.save(f'{new_file_name}.jpg')
+            self.image.save(f'{new_file_name}.jpg')
         except ValueError:
             print('Invalid file name.')
             return self.save_image_to_file()
